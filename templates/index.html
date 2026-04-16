@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sprint Retro App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+  </head>
+  <body>
+    <header>
+      <h1>Sprint Retrospective Workspace</h1>
+      <p>Manage teams, run boards, track actions, and review insights.</p>
+    </header>
+
+    <main>
+      <section>
+        <h2>Team & User Management</h2>
+        <div class="grid two">
+          <form id="create-user-form">
+            <h3>Add Team Member</h3>
+            <input name="name" placeholder="Name" required />
+            <input name="email" type="email" placeholder="Email" required />
+            <select name="role" required>
+              <option>Admin</option>
+              <option>Team Member</option>
+              <option>Read Only</option>
+              <option>Guest</option>
+            </select>
+            <button>Create User</button>
+          </form>
+
+          <form id="create-team-form">
+            <h3>Create Team</h3>
+            <input name="name" placeholder="Team Name" required />
+            <button>Create Team</button>
+          </form>
+        </div>
+
+        <div class="grid two">
+          <form id="assign-team-form">
+            <h3>Assign User to Team</h3>
+            <select name="user_id" id="assign-user"></select>
+            <select name="team_id" id="assign-team"></select>
+            <button>Assign</button>
+          </form>
+
+          <div>
+            <h3>Members</h3>
+            <ul id="users-list"></ul>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Retrospective Board</h2>
+        <form id="create-board-form">
+          <input name="title" placeholder="New board title" required />
+          <button>Create Board</button>
+        </form>
+
+        <div class="grid two">
+          <div>
+            <h3>Boards</h3>
+            <ul id="boards-list"></ul>
+          </div>
+
+          <form id="feedback-form">
+            <h3>Add Feedback</h3>
+            <select name="board_id" id="feedback-board"></select>
+            <select name="type">
+              <option>Continue</option>
+              <option>Stop</option>
+              <option>Start</option>
+            </select>
+            <textarea name="content" placeholder="Share feedback" required></textarea>
+            <button>Add Feedback</button>
+          </form>
+        </div>
+
+        <h3>Feedback Items</h3>
+        <ul id="feedback-list"></ul>
+      </section>
+
+      <section>
+        <h2>Action Tracker</h2>
+        <form id="action-form">
+          <select name="feedback_id" id="action-feedback"></select>
+          <input name="description" placeholder="Action item" required />
+          <button>Add Action Item</button>
+        </form>
+        <ul id="actions-list"></ul>
+      </section>
+
+      <section>
+        <h2>Analytics & Reports</h2>
+        <button id="refresh-reports">Load Report</button>
+        <pre id="report-output"></pre>
+      </section>
+    </main>
+
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+  </body>
+</html>
